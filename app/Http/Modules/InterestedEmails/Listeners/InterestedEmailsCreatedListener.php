@@ -7,7 +7,7 @@ use App\Notifications\AvailableCakeNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class InterestedEmailsCreatedListener
+class InterestedEmailsCreatedListener implements ShouldQueue
 {
     /**
      * Create the event listener.
