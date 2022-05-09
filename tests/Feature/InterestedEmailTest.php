@@ -228,4 +228,19 @@ class InterestedEmailTest extends TestCase
         $this->assertStringContainsString('cake', $message);
         $this->assertDatabaseCount('interested_emails', 10);
     }
+
+    public function test_destroy_method()
+    {
+        $insterestedEmail = InterestedEmail::factory()
+            ->for(
+                Cake::factory()->create()
+            )
+            ->create();
+
+        $response = $this->delete("/interested-emails/{$insterestedEmail->id}");
+
+        $response->assertStatus(204);
+        $this->assertDatabaseCount('interested_emails', 0);
+        $this->assertDatabaseMissing('interested_emails', $insterestedEmail->toArray());
+    }
 }
